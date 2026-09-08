@@ -5,17 +5,25 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "prebuild": "echo \"Removing old build files...\" && rm -rf dist",
     "build": "npx tsc",
     "watch": "npx tsc --watch",
     "prestart": "npm run build",
     "start": "npx nodemon dist/index.js",
-    "dev": "npx concurrently --kill-others \"npm run watch\" \"npm run start\""
+    "dev": "npx concurrently --kill-others \"npm run watch\" \"npm run start\"",
+    "lint": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "eslint": "^10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
     "nodemon": "^3.1.14",
+    "prettier": "^3.9.6",
     "typescript": "^7.0.2"
   },
   "dependencies": {
