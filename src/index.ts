@@ -5,6 +5,7 @@ import apiRouter from "./routes/index.js";
 
 const app = express();
 
+
 app.use("/api", apiRouter);
 
 app.listen(serverConfig.PORT, () => {
