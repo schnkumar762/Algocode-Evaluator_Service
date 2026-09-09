@@ -14,10 +14,31 @@ app.listen(serverConfig.PORT, () => {
 
   //sample queue producer
 
-  sampleQueueProducer("SampleJob", {
-    name: "Sachin",
-    company: "Rodbez",
-  });
+  sampleQueueProducer(
+    "SampleJob",
+    {
+      name: "Sachin2",
+      company: "Rodbez2",
+    },
+    2,
+  );
 
+  sampleQueueProducer(
+    "SampleJob",
+    {
+      name: "Sachin18",
+      company: "Rodbez18",
+    },
+    18,
+  );
+
+  sampleQueueProducer(
+    "SampleJob",
+    {
+      name: "Sachin5",
+      company: "Rodbez5",
+    },
+    5,
+  );
   SampleWorker("SampleQueue");
 });
