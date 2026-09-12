@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from "body-parser";
 
 import serverConfig from "./config/serverConfig.js";
 import apiRouter from "./routes/index.js";
@@ -7,8 +8,9 @@ import SampleWorker from "./workers/sampleWorker.js";
 
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.text);
 
 app.use("/api", apiRouter);
 
