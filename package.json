@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@bull-board/express": "^9.10.0",
     "@types/express": "^5.0.6",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
