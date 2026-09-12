@@ -5,6 +5,12 @@ import { createSubmissionZodSchema } from "../../dtos/CreateSubmissionDto.js";
 
 const submissionRouter = express.Router();
 
+submissionRouter.get("/ping", (req, res) => {
+  res.json({
+    status: "ping done",
+  });
+});
+
 submissionRouter.post(
   "/",
   validateCreateSubmissionDto(createSubmissionZodSchema),
