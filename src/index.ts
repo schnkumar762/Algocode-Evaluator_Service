@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.text);
+app.use(bodyParser.text());
 
 app.use("/api", apiRouter);
 
