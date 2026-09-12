@@ -7,6 +7,9 @@ import SampleWorker from "./workers/sampleWorker.js";
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/api", apiRouter);
 
 app.listen(serverConfig.PORT, () => {
