@@ -21,6 +21,6 @@ app.listen(serverConfig.PORT, () => {
     `BullBoard dashboard running on: http://localhost:${serverConfig.PORT}/ui`,
   );
   SampleWorker("SampleQueue");
-  const code = 'print("Hello")';
+  const code = "print(10 / 0)";
   runPython(code);
 });

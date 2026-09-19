@@ -1,6 +1,7 @@
 import createContainer from "./containerFactory.js";
 
 import { PYTHON_IMAGE } from "../utils/constants.js";
+import decodeDockerStream from "./dockerHelper.js";
 
 async function runPython(code: string) {
   const rawLogBuffer = [];
@@ -30,6 +31,9 @@ async function runPython(code: string) {
   });
   loggerStream.on("end", () => {
     console.log(rawLogBuffer);
+    const completeBuffer = Buffer.concat(rawLogBuffer);
+    const decodedStream = decodeDockerStream(completeBuffer);
+    console.log(decodedStream);
   });
   return pythonDockerContainer;
 }
