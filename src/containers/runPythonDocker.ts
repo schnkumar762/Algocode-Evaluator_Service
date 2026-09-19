@@ -3,15 +3,20 @@ import createContainer from "./containerFactory.js";
 import { PYTHON_IMAGE } from "../utils/constants.js";
 import decodeDockerStream from "./dockerHelper.js";
 
-async function runPython(code: string) {
+async function runPython(code: string, inputTestCase: string) {
   const rawLogBuffer = [];
 
   console.log("Initializing a new python docker container");
+  // const pythonDockerContainer = await createContainer(PYTHON_IMAGE, [
+  //   "python3",
+  //   "-c",
+  //   code,
+  //   "stty -echo",
+  // ]);
   const pythonDockerContainer = await createContainer(PYTHON_IMAGE, [
-    "python3",
+    "/bin/sh",
     "-c",
-    code,
-    "stty -echo",
+    `echo '${code}' > test.py && echo '${inputTestCase}' | python3 test.py`,
   ]);
   // starting / booting the corresponding docker container
   await pythonDockerContainer.start();
