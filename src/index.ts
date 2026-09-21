@@ -5,6 +5,7 @@ import serverConfig from "./config/serverConfig.js";
 import apiRouter from "./routes/index.js";
 import sampleQueueProducer from "./producers/sampleQueueProducer.js";
 import SampleWorker from "./workers/sampleWorker.js";
+import runPython from "./containers/runPythonDocker.js";
 
 const app = express();
 
@@ -16,34 +17,13 @@ app.use("/api", apiRouter);
 
 app.listen(serverConfig.PORT, () => {
   console.log(`Server is running on port ${serverConfig.PORT}`);
-
-  //sample queue producer
-
-  sampleQueueProducer(
-    "SampleJob",
-    {
-      name: "Sachin2",
-      company: "Rodbez2",
-    },
-    2,
-  );
-
-  sampleQueueProducer(
-    "SampleJob",
-    {
-      name: "Sachin18",
-      company: "Rodbez18",
-    },
-    18,
-  );
-
-  sampleQueueProducer(
-    "SampleJob",
-    {
-      name: "Sachin5",
-      company: "Rodbez5",
-    },
-    5,
+  console.log(
+    `BullBoard dashboard running on: http://localhost:${serverConfig.PORT}/ui`,
   );
   SampleWorker("SampleQueue");
+  const code = `
+x = input()
+print("value of x is ",x)
+`;
+  runPython(code, "100");
 });
